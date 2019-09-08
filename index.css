@@ -1,0 +1,15 @@
+.div_section {
+  background-color: #ececec;
+  margin: 20px;
+  padding: 10px;
+  border-radius: 10px;
+}
+.div_title {
+  margin-bottom: 20px;
+}
+.div_desc {
+  /* border: solid 1px lightskyblue; */
+}
+.div_img {
+  width: 400px;
+}

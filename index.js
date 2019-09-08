@@ -7,6 +7,15 @@ function fn() {
 var btn1 = document.getElementById("button1");
 var cd = false;
 
+btn1.onclick = function() {
+  if (!cd) {
+    fn();
+    cd = true;
+    var timerId = setTimeout(() => {
+      cd = false;
+    }, 3000);
+  }
+};
 // btn1.onclick = function() {
 //   if (cd) {
 //   } else {
@@ -17,16 +26,6 @@ var cd = false;
 //     }, 2000);
 //   }
 // };
-
-btn1.onclick = function() {
-  if (!cd) {
-    fn();
-    cd = true;
-    var timerId = setTimeout(() => {
-      cd = false;
-    }, 3000);
-  }
-};
 /*------------------------函数节流--end----------------------*/
 
 /*------------------------函数防抖--start----------------------*/
