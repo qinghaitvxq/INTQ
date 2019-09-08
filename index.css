@@ -6,6 +6,8 @@
 }
 .div_title {
   margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bolder;
 }
 .div_desc {
   /* border: solid 1px lightskyblue; */
