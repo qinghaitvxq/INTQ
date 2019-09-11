@@ -10,44 +10,156 @@
   <body>
     <h2>hello world</h2>
     <div class="div_section">
-        <div class="div_title">
-         性能优化
-        </div>
-        <div class="div_desc"></div>
+      <div class="div_title">
+        强缓存（通过Expires和Cache-Control两种响应头实现）(https://github.com/amandakelake/blog/issues/41)
       </div>
+      <div class="div_desc">
+        <ul>
+          <ul>
+            <li>
+              Expires
+              <div>
+                Expires是http1.0提出的一个表示资源过期时间的header，它描述的是一个绝对时间，由服务器返回。
+                Expires 受限于本地时间，如果修改了本地时间，可能会造成缓存失效
+              </div>
+            </li>
+            <li>
+              Cache-Control
+              <div>
+                Cache-Control 出现于 HTTP / 1.1，优先级高于 Expires
+                ,表示的是相对时间
+              </div>
+            </li>
+          </ul>
+        </ul>
+      </div>
+    </div>
+    <div class="div_section">
+      <div class="div_title">
+        手写AJAX 代码中的this JSONP CORS 跨域 闭包/立即执行函数(方方文章)
+      </div>
+      <div class="div_desc"></div>
+    </div>
+    <div class="div_section">
+      <div class="div_title">
+        性能优化(https://www.cnblogs.com/xiaohuochai/p/9178390.html)
+      </div>
+      <div class="div_desc">
+        <ul>
+          <li>
+            1.减少请求数
+            <ul>
+              <li>
+                文件合并带来的问题： 1.首屏渲染 2.缓存失效 <br />
+                一般措施：（公共库合并，不同页面单独渲染）
+              </li>
+            </ul>
+          </li>
+          <li>
+            2.减小资源大小
+          </li>
+          <li>
+            3.优化网络连接
+            <ul>
+              <li>
+                使用CDN
+              </li>
+            </ul>
+          </li>
+          <li>
+            优化资源加载
+          </li>
+          <li>
+            减少重绘回流
+          </li>
+          <li>更好性能的API</li>
+          <li>
+            webpack优化
+            <ul>
+              <li>
+                打包公共代码
+                <div>
+                  使用CommonsChunkPlugin插件，将公共模块拆出来，最终合成的文件能够在最开始的时候加载一次，便存到缓存中供后续使用。这会带来速度上的提升，因为浏览器会迅速将公共的代码从缓存中取出来，而不是每次访问一个新页面时，再去加载一个更大的文件
+                </div>
+              </li>
+              <li>
+                动态导入和按需加载
+                <div>
+                  webpack提供了两种技术通过模块的内联函数调用来分离代码，优先选择的方式是，使用符合
+                  ECMAScript 提案 的 import() 语法。第二种，则是使用 webpack
+                  特定的 require.ensure
+                </div>
+              </li>
+              <li>
+                剔除无用代码
+                <div>
+                  tree shaking 是一个术语，通常用于描述移除 JavaScript
+                  上下文中的未引用代码(dead-code)。它依赖于 ES2015
+                  模块系统中的静态结构特性，例如 import 和
+                  export。这个术语和概念实际上是兴起于 ES2015 模块打包工具
+                  rollup 　　JS的tree
+                  shaking主要通过uglifyjs插件来完成，CSS的tree
+                  shaking主要通过purify CSS来实现的
+                </div>
+              </li>
+              <li>
+                长缓存优化
+                <div>
+                  1、将hash替换为chunkhash，这样当chunk不变时，缓存依然有效
+                  　　2、使用Name而不是id 　　每个 module.id
+                  会基于默认的解析顺序(resolve
+                  order)进行增量。也就是说，当解析顺序发生变化，ID 也会随之改变
+                  　　下面来使用两个插件解决这个问题。第一个插件是
+                  NamedModulesPlugin，将使用模块的路径，而不是数字标识符。虽然此插件有助于在开发过程中输出结果的可读性，然而执行时间会长一些。第二个选择是使用
+                  HashedModuleIdsPlugin，推荐用于生产环境构建
+                </div>
+              </li>
+              <li>
+                公用代码内联
+                <div>
+                  使用html-webpack-inline-chunk-plugin插件将mainfest.js内联到html文件中
+                </div>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
 
     <div class="div_section">
-       
       <div class="div_title">
         react 生命周期 three things in lifecycle
       </div>
       <div class="div_desc">
-          <br />
-          1. initial render   <br />
-          2. change something ,rerender  <br />
-          3. destroy the component <br />
-          <br />
-          生命周期hooks:
-          initial render 包括： <br />
-          1. constructor()  constructor only runs one time ,it only runs when it initially render,good place to set the initial state. 
-          <br />
-          2. componentWillMount() only runs once, can change state base on props. also if you want to do something with the global events,
-          like a window or document,you can set it here.
-          <br />
-          3. render()  takes the state and props and renders our component,not to call the setstate in the render.
-          <br />
-          4. componentDidMount() only runs once. only runs during the initial cycle.you can make ajax call here.
-          <br/>
-          <br />
-          change something,包括 <br />
-          1. componentWillReceiveProps() could setState here sometime <br />
-          2. shouldComponentUpdate() <br />
-          3. componentWillUpdate() do not run setState here <br />
-          4. componentDidUpdate() <br />
-       
-          <br/>
-          destroy the component包括 <br />
-          1. componentWillUnmount()
+        <br />
+        1. initial render <br />
+        2. change something ,rerender <br />
+        3. destroy the component <br />
+        <br />
+        生命周期hooks: initial render 包括： <br />
+        1. constructor() constructor only runs one time ,it only runs when it
+        initially render,good place to set the initial state.
+        <br />
+        2. componentWillMount() only runs once, can change state base on props.
+        also if you want to do something with the global events, like a window
+        or document,you can set it here.
+        <br />
+        3. render() takes the state and props and renders our component,not to
+        call the setstate in the render.
+        <br />
+        4. componentDidMount() only runs once. only runs during the initial
+        cycle.you can make ajax call here.
+        <br />
+        <br />
+        change something,包括 <br />
+        1. componentWillReceiveProps() could setState here sometime <br />
+        2. shouldComponentUpdate() <br />
+        3. componentWillUpdate() do not run setState here <br />
+        4. componentDidUpdate() <br />
+
+        <br />
+        destroy the component包括 <br />
+        1. componentWillUnmount()
       </div>
     </div>
 
