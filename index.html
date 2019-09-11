@@ -11,9 +11,82 @@
     <h2>hello world</h2>
     <div class="div_section">
         <div class="div_title">
-            Inheritance and the prototype chain 
-          
+          new title
+        </div>
+        <div class="div_desc">
+         new desc
+        </div>
+    </div>
+    <div class="div_section">
+        <div class="div_title">
+          new title
+        </div>
+        <div class="div_desc">
+         new desc
+        </div>
+    </div>
+    <div class="div_section">
+        <div class="div_title">
+          深拷贝 浅拷贝
+        </div>
+        <div class="div_desc">
+            基本数据类型的特点：直接存储在栈(stack)中的数据
+            引用数据类型的特点：存储的是该对象在栈中引用，真实的数据存放在堆内存里
+            <br/>
+            浅拷贝只复制指向某个对象的指针，而不复制对象本身，新旧对象还是共享同一块内存。但深拷贝会另外创造一个一模一样的对象，新对象跟原对象不共享内存，修改新对象不会改到原对象。
+        </div>
+    </div>
+    <div class="div_section">
+        <div class="div_title">
+            redux中间件的理解，以及用过哪些中间件（我自己的博客：https://www.jianshu.com/p/cd94670ab4bf）
+        </div>
+        <div class="div_desc">
+            理解：中间件就是要对redux的store.dispatch方法做一些改造，以实现其他的功能。<br />
 
+        </div>
+    </div>
+    <div class="div_section">
+        <div class="div_title">
+            Redux的实现流程/ React-redux的实现原理
+        </div>
+        <div class="div_desc">
+            Redux作为一个通用模块，主要还是用来处理应用中state的变更，通过react-redux做连接，可以在React+Redux的项目中将两者结合的更好。
+            react-redux是一个轻量级的封装库，它主要通过两个核心方法实现
+            <br />
+            Provider：从最外部封装了整个应用，并向connect模块传递store。<br />
+            Connect： 1、包装原组件，将state和action通过props的方式传入到原组件内部。
+                       2、监听store tree变化，使其包装的原组件可以响应state变化
+        </div>
+    </div>
+    <div class="div_section">
+        <div class="div_title">
+            React如何性能优化
+        </div>
+        <div class="div_desc">
+          （这个回答不大好。。。要自己再看下。。。。）
+            1. 充分利用shouldComponentUpdate函数，不过这需要你的组件尽量最小化，如果当前组件数据过于复杂，其实是很难优化的。
+            2. 给你的DOM遍历上加上唯一的key,注意尽量不要用index,因为如果你新DOM中删了某一个节点，它会重新排列index，
+            那跟原来同层级一比就都会完全不一样，而重新渲染了，所以最好使用id值什么的作key值。
+            
+            3. 能用const声明的就用const。
+            4. DOM里少用箭头函数，当然其实要传参时也还是得用。再者，函数bind尽量写在constructor，避免每次render重新bind。
+            5. 减少对真实DOM的操作。
+            6. 如果是用webpack搭建环境的话，当一个包过大加载过慢时，可分打成多个包来优化。
+        </div>
+    </div>
+    <div class="div_section">
+        <div class="div_title">
+            react的setState的原理及用法 (来源https://segmentfault.com/a/1190000017140200)
+            react 核心成员回答：https://github.com/facebook/react/issues/11527#issuecomment-360199710 
+        </div>
+        <div class="div_desc">
+            当调用setState时，它并不会立即改变，而是会把要修改的状态放入一个任务队列，等到事件循环结束时，再合并指更新
+            因此，setState有 异步，合并更新 来更新两个特性。batch update:（https://zhuanlan.zhihu.com/p/28532725）
+        </div>
+    </div>
+    <div class="div_section">
+        <div class="div_title">
+            Inheritance and the prototype chain 
         </div>
         <div class="div_desc">
             When it comes to inheritance, JavaScript only has one construct: objects. Each object has a private property which holds a link to another object called its prototype. That prototype object has a prototype of its own, and so on until an object is reached with null as its prototype. By definition, null has no prototype, and acts as the final link in this prototype chain.
@@ -28,22 +101,7 @@
          new desc
         </div>
     </div>
-    <div class="div_section">
-        <div class="div_title">
-          new title
-        </div>
-        <div class="div_desc">
-         new desc
-        </div>
-    </div>
-    <div class="div_section">
-        <div class="div_title">
-          new title
-        </div>
-        <div class="div_desc">
-         new desc
-        </div>
-    </div>
+
     <div class="div_section">
       <div class="div_title">
         BFC (BLOCK Formatting context，BFC) 块格式化上下文
@@ -293,6 +351,13 @@
       <div class="div_desc">
         <img class="div_img" src="images/Snip20190908_2.png" />
       </div>
+    </div>
+    <div>
+      <ul>
+        <li>css性能问题</li>
+        <li>dom操作</li>
+        <li>图片懒加载视口判断</li>
+      </ul>
     </div>
 
     <script src="index.js"></script>
