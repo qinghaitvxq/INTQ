@@ -1,6 +1,12 @@
 /*------------------------函数节流--start----------------------*/
 // CD 冷却时间  游戏中释放某个技能后，3秒内或某个时间内不能再释放某个技能
 
+var v = "Hello World";
+(function() {
+  alert(v);
+  // var v = "I love you";
+})();
+
 function fn() {
   console.log("函数节流按钮测试");
 }
